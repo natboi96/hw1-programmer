@@ -279,6 +279,19 @@
             return false;
         }
 
+        function clearInputs() {
+            const application_form = document.getElementById('application_form');
+            const form_items = application_form.elements;
+
+            for (let i = 0; i < form_items.length; i++) {
+                const form_item = form_items[i];
+
+                if(((form_item.tagName === 'TEXTAREA') || (form_item.tagName === 'INPUT' && form_item.type === 'text'))) {
+                    form_item.value = "";
+                }
+            }
+        }
+
         document.getElementById("application_form").addEventListener("submit", function (event) {
             event.preventDefault(); // Prevent the form from submitting normally
 
@@ -295,6 +308,7 @@
                 console.log("failing here1");
                 var element = document.getElementById("error_box");
                 element.style.display = "block";
+                clearInputs();
             } else {
                 window.location.href = "index.html";
             }
